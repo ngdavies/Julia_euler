@@ -1,6 +1,29 @@
+# Euler_0009
+# A Pythagorean triplet is a set of three natural numbers, a < b < c, for which,
+# a^2 + b^2 = c^2
+# For example, 3^2 + 4^2 = 9 + 16 = 25 = 5^2.
+# There exists exactly one Pythagorean triplet for which a + b + c = 1000.
+# Find the product abc. 
+
+function euler_0009(n)
+    h = n ÷ 2
+    for a in 1:h
+        for b in a+1:h
+            c = n - a - b
+            if a^2 + b^2 == c^2
+                return a * b * c
+            end
+        end
+    end
+end
+
+
+
+
 # Euler_0008
 # The four adjacent digits in the 1000-digit number that have the greatest product are 9 × 9 × 8 × 9 = 5832.
 # Find the thirteen adjacent digits in the 1000-digit number that have the greatest product. What is the value of this product? 
+
 const s = """
 73167176531330624919225119674426574742355349194934\
 96983520312774506326239578318016984801869478851843\

@@ -1,3 +1,19 @@
+# Euler_0005
+# 2520 is the smallest number that can be divided by each of the numbers
+# from 1 to 10 without any remainder. What is the smallest positive number 
+# that is evenly divisible by all of the numbers from 1 to 20?
+
+function euler_0005(n)
+    if n == 10 
+        return 2 * 3 * 2 * 5 * 7 * 2 * 3
+    elseif n == 20
+        return 2^4 * 3^2 * 5 * 7 * 11 * 13 * 17 * 19
+    end
+end
+
+
+
+
 # Euler_0004
 # A palindromic number reads the same both ways. 
 # The largest palindrome made from the product of two 2-digit numbers is 9009 = 91 × 99.

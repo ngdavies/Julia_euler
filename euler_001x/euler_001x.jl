@@ -1,3 +1,35 @@
+# Euler_0004
+# A palindromic number reads the same both ways. 
+# The largest palindrome made from the product of two 2-digit numbers is 9009 = 91 × 99.
+# Find the largest palindrome made from the product of two 3-digit numbers.
+
+function is_palindrome(n)
+    s = string(n)
+    return s == reverse(s)
+end
+
+function euler_0004(n)
+    max = 0
+    imax, jmax = 0, 0
+    if n > 10 
+        limit = n - n÷10
+    else
+        limit = 1
+    end
+    for i in n-1:-1:limit
+        for j in n-1:-1:limit
+            product = i * j
+            if product > max && is_palindrome(product)
+                max = product
+                imax, jmax = i, j
+            end
+        end
+    end
+    return max
+end
+
+
+
 # Euler_0003
 # The prime factors of 13195 are 5, 7, 13 and 29.
 # What is the largest prime factor of the number 600851475143 ?

@@ -1,3 +1,28 @@
+# Euler_0007
+# By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13, 
+# we can see that the 6th prime is 13.
+# What is the 10 001st prime number? 
+
+function euler_0007(n)
+    primes = [2]
+    i = 3
+    while length(primes) < n
+        is_prime = true
+        for p in primes
+            if i % p == 0
+                is_prime = false
+                break
+            end
+        end
+        if is_prime
+            push!(primes, i)
+        end
+        i += 2
+    end
+    return primes[n]
+end
+
+
 # Euler_0006
 # The sum of the squares of the first ten natural numbers is,
 #  1^2 + 2^2 + ... + 10^2 = 385

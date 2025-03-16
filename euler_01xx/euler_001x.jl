@@ -43,7 +43,7 @@ function euler_0018(test)
     triangle = []
     for line in split(triangle_string, '\n')
         if length(line) != 0
-            push!(triangle, [parse(Int, x) for x in split(line)])
+            push!(triangle, [parse(Int, x) for x in split(line, ' ')])
         end
     end
     nRows = length(triangle)
@@ -55,7 +55,7 @@ function euler_0018(test)
             elseif col == row
                 triangle[row][col] += triangle[row-1][col-1]
             else
-                triangle[row][col] += maximum(triangle[row-1][col-1], triangle[row-1][col])
+                triangle[row][col] += max(triangle[row-1][col-1], triangle[row-1][col])
             end
         end
     end

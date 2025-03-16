@@ -13,17 +13,17 @@ tens = ["ten", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty
 
 function letters(n)
     if n == 1000
-        return length("onethousand")
+        return letters(1) + length("thousand")
     elseif n % 100 == 0
-        return length("hundred") + length(units[n ÷ 100])
+        return length("hundred") + letters(n ÷ 100)
     elseif n > 100
-        return length("hundred") + length(units[n ÷ 100]) + length("and") + letters(n % 100)
+        return length("hundred") + letters(n ÷ 100) + length("and") + letters(n % 100)
     elseif n < 20 
         return length(units[n])
     elseif n % 10 == 0
         return length(tens[n ÷ 10])
     else
-        return length(tens[n ÷ 10]) + length(units[n % 10])
+        return length(tens[n ÷ 10]) + letters(n % 10)
     end
 end
 

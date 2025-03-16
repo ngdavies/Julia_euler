@@ -8,6 +8,7 @@
 # 8 5 9 3
 # That is, 3 + 7 + 4 + 9 = 23.
 # Find the maximum total from top to bottom of the triangle below:
+
 const triangle_data = """
 75
 95 64
@@ -32,7 +33,6 @@ const test_triangle_data = """
 2 4 6
 8 5 9 3
 """
-
 
 function euler_0018(test)
     if test == true
@@ -60,22 +60,6 @@ function euler_0018(test)
     end
     return maximum(data)
 end
-
-#     nRows = length(triangle)
-#     maxCols = length(triangle[nRows])
-#     for row in 2:nRows
-#         for col in 1:row 
-#             if col == 1
-#                 triangle[row][col] += triangle[row-1][col]
-#             elseif col == row
-#                 triangle[row][col] += triangle[row-1][col-1]
-#             else
-#                 triangle[row][col] += max(triangle[row-1][col-1], triangle[row-1][col])
-#             end
-#         end
-#     end
-#     return maximum(triangle[nRows])
-# end
 
 
 # Euler_0017 Number letter counts

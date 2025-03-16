@@ -40,27 +40,42 @@ function euler_0018(test)
     else
         triangle_string = triangle_data
     end
-    triangle = []
+    first = true
+    data = []
     for line in split(triangle_string, '\n')
         if length(line) != 0
-            push!(triangle, [parse(Int, x) for x in split(line, ' ')])
-        end
-    end
-    nRows = length(triangle)
-    maxCols = length(triangle[nRows])
-    for row in 2:nRows
-        for col in 1:row 
-            if col == 1
-                triangle[row][col] += triangle[row-1][col]
-            elseif col == row
-                triangle[row][col] += triangle[row-1][col-1]
-            else
-                triangle[row][col] += max(triangle[row-1][col-1], triangle[row-1][col])
+            if first
+                data = [parse(Int, x) for x in split(line, ' ')]
+                first = false
+            else 
+                row = [parse(Int, x) for x in split(line, ' ')]
+                row[1] += data[1]
+                row[end] += data[end]
+                for col in 2:length(row)-1
+                    row[col] += max(data[col-1], data[col])
+                end
+                data = row
             end
         end
     end
-    return maximum(triangle[nRows])
+    return maximum(data)
 end
+
+#     nRows = length(triangle)
+#     maxCols = length(triangle[nRows])
+#     for row in 2:nRows
+#         for col in 1:row 
+#             if col == 1
+#                 triangle[row][col] += triangle[row-1][col]
+#             elseif col == row
+#                 triangle[row][col] += triangle[row-1][col-1]
+#             else
+#                 triangle[row][col] += max(triangle[row-1][col-1], triangle[row-1][col])
+#             end
+#         end
+#     end
+#     return maximum(triangle[nRows])
+# end
 
 
 # Euler_0017 Number letter counts

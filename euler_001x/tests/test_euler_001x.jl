@@ -4,6 +4,10 @@ using Test
 
 include("../euler_001x.jl")
 
+@testset "Euler_0013" begin
+    @test euler_0013() == 5537376230
+end
+
 @testset "Euler_0012" begin
     @test euler_0012(5) == 28
     @test euler_0012(500) == 76576500

@@ -5,19 +5,20 @@
 # There exists exactly one Pythagorean triplet for which a + b + c = 1000.
 # Find the product abc. 
 
-function euler_0009(n)
-    h = n ÷ 2
-    for a in 1:h
-        for b in a+1:h
-            c = n - a - b
-            if a^2 + b^2 == c^2
+
+function euler_0009(N)
+    for a in 1:(N ÷ 3)  # a must be less than N/3 to ensure a < b < c
+        for b in (a+1):(N-a)÷2  # b must be greater than a and less than (N-a)/2
+            c = N - a - b  # Compute c directly
+            if a^2 + b^2 == c^2  # Check Pythagorean condition
+                # println("Triplet: ($a, $b, $c)")
+                # return (a, b, c)  # Return first found triplet
                 return a * b * c
             end
         end
     end
+    return nothing  # No triplet found
 end
-
-
 
 
 # Euler_0008

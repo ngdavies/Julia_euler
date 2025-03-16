@@ -1,16 +1,24 @@
 #!/usr/bin/env julia
 
-# Euler_0015 Lattice paths
-# Starting in the top left corner of a 2×2 grid, and only being able to move to the right and down,
-# there are exactly 6 routes to the bottom right corner.
-# How many such routes are there through a 20×20 grid?  (2n)! / (n!)^2      
+# Euler_0016 Power digit sum
+# 2^15 = 32768 and the sum of its digits is 3 + 2 + 7 + 6 + 8 = 26.
+# What is the sum of the digits of the number 2^1000?
 
-function euler_0015(n)
-    binomial(2n, n)
+function euler_0016(n)
+    sum(digits(BigInt(2)^n))
 end
 
 
 
+# Euler_0015 Lattice paths
+# Starting in the top left corner of a 2×2 grid, and only being able to move to the right and down,
+# there are exactly 6 routes to the bottom right corner.
+# How many such routes are there through a 20×20 grid?  (2n)! / (n!)^2      
+# Result is ways to sequence 2n steps where n are down and n are right, given by binomial(2n, n)
+
+function euler_0015(n)
+    binomial(2n, n)
+end
 
 
 # Euler_0014 Longest Collatz sequence

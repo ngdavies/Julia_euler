@@ -1,5 +1,42 @@
 #!/usr/bin/env julia
 
+# Euler_0017 Number letter counts
+# If the numbers 1 to 5 are written out in words: one, two, three, four, five, then there are
+# 3 + 3 + 5 + 4 + 4 = 19 letters used in total.
+# If all the numbers from 1 to 1000 (one thousand) inclusive were written out in words, how many letters would be used?
+# NOTE: Do not count spaces or hyphens. For example, 342 (three hundred and forty-two) contains 23 letters and 115
+# (one hundred and fifteen) contains 20 letters. The use of "and" when writing out numbers is in compliance with British usage.
+
+units = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine", 
+    "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"]
+tens = ["ten", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"]
+
+function letters(n)
+    if n == 1000
+        return length("onethousand")
+    elseif n % 100 == 0
+        return length("hundred") + length(units[n ÷ 100])
+    elseif n > 100
+        return length("hundred") + length(units[n ÷ 100]) + length("and") + letters(n % 100)
+    elseif n < 20 
+        return length(units[n])
+    elseif n % 10 == 0
+        return length(tens[n ÷ 10])
+    else
+        return length(tens[n ÷ 10]) + length(units[n % 10])
+    end
+end
+
+function euler_0017(n)
+    total = 0
+    for i in 1:n
+        total += letters(i)
+    end
+    return total
+end
+
+
+
 # Euler_0016 Power digit sum
 # 2^15 = 32768 and the sum of its digits is 3 + 2 + 7 + 6 + 8 = 26.
 # What is the sum of the digits of the number 2^1000?

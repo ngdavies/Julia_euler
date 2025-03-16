@@ -2,7 +2,7 @@
 
 using Test
 
-include("euler_001x.jl")
+include("../euler_001x.jl")
 
 # @testset "Euler_0011" begin
 #     @test euler_0011(4) == 70600674

@@ -3,23 +3,35 @@
 # Find the sum of all the primes below two million.
 
 function euler_0010(n)
-    primes = [2]
-    i = 3
-    while i < n
-        is_prime = true
-        for p in primes
-            if i % p == 0
-                is_prime = false
-                break
+    is_prime = trues(n)
+    is_prime[1] = false
+    for i in 2:floor(Int, sqrt(n))
+        if is_prime[i]
+            for j in i^2:i:n
+                is_prime[j] = false
             end
         end
-        if is_prime
-            push!(primes, i)
-        end
-        i += 2
     end
-    return sum(primes)
+    return sum(filter(x -> is_prime[x], 1:n))
 end
+
+# function sieve(n)
+#     is_prime = trues(n)
+#     is_prime[1] = false
+#     for i in 2:floor(Int, sqrt(n))
+#         if is_prime[i]
+#             for j in i^2:i:n
+#                 is_prime[j] = false
+#             end
+#         end
+#     end
+#     return filter(x -> is_prime[x], 1:n)
+# end
+
+# function euler_0010_not(n)
+#     primes = sieve(n - 1)
+#     return sum(primes)
+# end
 
 
 # Euler_0009

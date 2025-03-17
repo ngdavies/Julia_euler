@@ -4,6 +4,10 @@ using Test
 
 include("../euler_001x.jl")
 
+@testset "Euler_0019" begin
+    @test euler_0019() == 171
+end
+
 @testset "Euler_0018" begin
     @test euler_0018(true) == 23
     @test euler_0018(false) == 1074

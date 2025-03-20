@@ -4,7 +4,11 @@ using Test
 
 include("../euler_002x.jl")
 
-@testset "Euler_0020" begin
+@testset "Euler_0022" begin
+    @test euler_0022() == 871198282
+end
+
+@testset "Euler_0021" begin
     @test sum_proper_divisors(220) == 284
     @test sum_proper_divisors(284) == 220
     @test euler_0021(10000) == 31626

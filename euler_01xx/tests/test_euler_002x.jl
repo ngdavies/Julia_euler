@@ -4,6 +4,16 @@ using Test
 
 include("../euler_002x.jl")
 
+@testset "Euler_0024" begin
+    @test euler_0024_copilot() == 2783915460
+    @test euler_0024(3,4) == 120
+    @test euler_0024(10,10^6) == 2783915460
+end
+
+@testset "Euler_0023" begin
+    @test euler_0023() == 4179871
+end
+
 @testset "Euler_0022" begin
     @test euler_0022() == 871198282
 end

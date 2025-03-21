@@ -1,5 +1,89 @@
 #!/usr/bin/env julia
 
+# Euler_0024 Lexicographic permutations
+# A permutation is an ordered arrangement of objects. For example, 3124 is one possible permutation of the digits 1, 2, 3 and 4.
+# If all of the permutations are listed numerically or alphabetically, we call it lexicographic order. The lexicographic permutations
+# of 0, 1 and 2 are:
+# 012   021   102   120   201   210
+# What is the millionth lexicographic permutation of the digits 0, 1, 2, 3, 4, 5, 6, 7, 8 and 9?
+
+function euler_0024(num, target)
+    residue = target-1
+    digs = Set(0:num-1)
+    result = 0
+    for id = num:-1:1
+        # println("In: id = $id, residue = $residue, digs = $digs")
+        fid = factorial(id-1)
+        ix = floor(Int, residue / fid)
+        residue -= ix * fid
+        d = sort(collect(digs))[ix+1]
+        result = 10*result + d
+        delete!(digs, d)
+        # println("In: res = $result, residue = $residue, d = $d, digs = $digs")
+    end
+    # println(result)
+    return result
+end
+
+#  copilot solution
+import Pkg
+Pkg.add("Combinatorics")
+Pkg.add("IterTools")
+using Combinatorics
+using IterTools
+function euler_0024_copilot()
+   str = join(nth(permutations(collect(0:9)), 10^6))
+   return parse(Int, str)
+end
+
+
+
+# Euler_0023 Non-abundant sums
+# A perfect number is a number for which the sum of its proper divisors is exactly equal to the number.
+# For example, the sum of the proper divisors of 28 would be 1 + 2 + 4 + 7 + 14 = 28, which means that 28
+# is a perfect number.
+# A number n is called deficient if the sum of its proper divisors is less than n and it is called abundant
+# if this sum exceeds n.
+# As 12 is the smallest abundant number, 1 + 2 + 3 + 4 + 6 = 16, the smallest number that can be written
+# as the sum of two abundant numbers is 24. By mathematical analysis, it can be shown that all integers greater
+# than 28123 can be written as the sum of two abundant numbers. However, this upper limit cannot be reduced any
+# further by analysis even though it is known that the greatest number that cannot be expressed as the sum of two
+# abundant numbers is less than this limit.
+# Find the sum of all the positive integers which cannot be written as the sum of two abundant numbers. 
+
+
+function sum_factors(n)
+    sum = 1
+    for f = 2:floor(Int, sqrt(n))
+        if n % f == 0
+            f2 = n ÷ f
+            if f == f2
+                sum += f
+            else
+                sum += f + f2
+            end
+        end
+    end
+    return sum
+end
+
+is_abundant(n) = sum_factors(n) > n
+
+function euler_0023()
+    limit = 28123
+    abundants = filter(is_abundant, 1:limit)
+    abundant_sums = Set()
+    for i in abundants
+        for j in abundants
+            if i + j <= limit
+                push!(abundant_sums, i + j)
+            end
+        end
+    end
+    return sum(setdiff(1:limit, abundant_sums))
+end
+
+
 # Euler_0022 Names scores
 # Using names.txt (right click and 'Save Link/Target As...'), a 46K text file containing over five-thousand first names,
 # begin by sorting it into alphabetical order. Then working out the alphabetical value for each name, multiply this value

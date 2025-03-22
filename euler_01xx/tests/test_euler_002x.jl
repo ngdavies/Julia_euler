@@ -4,8 +4,13 @@ using Test
 
 include("../euler_002x.jl")
 
+@testset "Euler_0025" begin
+    @test euler_0025(3) == 12
+    @test euler_0025(1000) == 4782
+end
+
 @testset "Euler_0024" begin
-    @test euler_0024_copilot() == 2783915460
+    # @test euler_0024_copilot() == 2783915460
     @test euler_0024(3,4) == 120
     @test euler_0024(10,10^6) == 2783915460
 end

@@ -1,5 +1,38 @@
 #!/usr/bin/env julia
 
+# Euler_0025 1000-digit Fibonacci number
+# The Fibonacci sequence is defined by the recurrence relation:
+# Fn = Fn−1 + Fn−2, where F1 = 1 and F2 = 1.
+# Hence the first 12 terms will be:
+# F1 = 1
+# F2 = 1
+# F3 = 2
+# F4 = 3
+# F5 = 5
+# F6 = 8
+# F7 = 13
+# F8 = 21
+# F9 = 34
+# F10 = 55
+# F11 = 89
+# F12 = 144
+# The 12th term, F12, is the first term to contain three digits.
+# What is the index of the first term in the Fibonacci sequence to contain 1000 digits? 
+
+function euler_0025(n)
+    limit = BigInt(10)^(n-1)
+    a, b = BigInt(1), BigInt(1)
+    index = 2
+    # println("index = 1, a = $a, b = $b, limit = $limit")
+    # while length(digits(b)) < n
+    while b < limit
+        a, b = b, a + b
+        index += 1
+        # println("index = $index, a = $a, b = $b")
+    end
+    return index
+end
+
 # Euler_0024 Lexicographic permutations
 # A permutation is an ordered arrangement of objects. For example, 3124 is one possible permutation of the digits 1, 2, 3 and 4.
 # If all of the permutations are listed numerically or alphabetically, we call it lexicographic order. The lexicographic permutations
@@ -25,16 +58,16 @@ function euler_0024(num, target)
     return result
 end
 
-#  copilot solution
-import Pkg
-Pkg.add("Combinatorics")
-Pkg.add("IterTools")
-using Combinatorics
-using IterTools
-function euler_0024_copilot()
-   str = join(nth(permutations(collect(0:9)), 10^6))
-   return parse(Int, str)
-end
+# #  copilot solution
+# import Pkg
+# Pkg.add("Combinatorics")
+# Pkg.add("IterTools")
+# using Combinatorics
+# using IterTools
+# function euler_0024_copilot()
+#    str = join(nth(permutations(collect(0:9)), 10^6))
+#    return parse(Int, str)
+# end
 
 
 
